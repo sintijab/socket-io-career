@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import http from 'http';
+import timeout from 'connect-timeout';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -19,6 +20,8 @@ const io = new Server(server, {
 
 app.use(express.static(path.join(__dirname, 'out')));
 
+app.use(timeout('15s'))
+
 app.use((req, res, next) => {
   res.append('Access-Control-Allow-Origin', ['https://cofun.digital', 'https://ai-career-assistant.cofun.digital', 'http://localhost:3001', 'http://localhost:3000', 'https://socket-io-career-bot.onrender.com', 'https://career-chat.onrender.com']);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
@@ -35,8 +38,7 @@ app.get('/health', (req, res) => {
 io.on('connection', (socket) => {
   const getOffers = async (country) => {
     try {
-      const response = await fetch(`ancient-glade-0250.ploomber.app/api/scrape-jobs?country=${country}`);
-
+      const response = await fetch(`https://ancient-glade-0250.ploomber.app/api/scrape-jobs?country=${country}`);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
