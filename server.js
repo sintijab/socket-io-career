@@ -20,7 +20,7 @@ const io = new Server(server, {
 app.use(express.static(path.join(__dirname, 'out')));
 
 app.use((req, res, next) => {
-  res.append('Access-Control-Allow-Origin', ['https://cofun.digital', 'https://ai-career-assistant.cofun.digital', 'http://localhost:3001', 'https://socket-io-career-bot.onrender.com', 'https://career-chat.onrender.com']);
+  res.append('Access-Control-Allow-Origin', ['https://cofun.digital', 'https://ai-career-assistant.cofun.digital', 'http://localhost:3001', 'http://localhost:3000', 'https://socket-io-career-bot.onrender.com', 'https://career-chat.onrender.com']);
   res.append('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
   res.append('Access-Control-Allow-Headers', 'Content-Type');
   res.append('X-Frame-Options', 'https://cofun.digital');
