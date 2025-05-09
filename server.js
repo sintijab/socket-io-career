@@ -12,7 +12,7 @@ const server = http.createServer(app);
 import { Server } from "socket.io";
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:3001', 'https://ai-career-assistant.cofun.digital', 'https://socket-io-career-bot.onrender.com', 'https://career-chat.onrender.com'],
+    origin: ['http://localhost:3001', 'http://localhost:3000', 'https://ai-career-assistant.cofun.digital', 'https://socket-io-career-bot.onrender.com', 'https://career-chat.onrender.com'],
     methods: ["GET", "POST"],
   }
 });
